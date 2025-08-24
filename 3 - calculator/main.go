@@ -22,6 +22,9 @@ func calculator(a [2]float64, b string) (float64, error) {
 	case "*":
 		return a[0] * a[1], nil
 	case "/":
+		if a[1] == 0 {
+			return 0, fmt.Errorf("Error: division by zero")
+		}
 		return a[0] / a[1], nil
 	case "-":
 		return a[0] - a[1], nil
