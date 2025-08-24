@@ -13,6 +13,28 @@ func convertIntoNumber(a string) (int, error) {
 	return number, nil
 }
 
+func calcSum(a int) (int, error){
+	if a > 1000000 || a < -1000000 {
+		return 0, fmt.Errorf("Error: too large number limit from -1000000 to 1000000")
+	}
+
+	sum := 0
+
+	if a < 0 {
+		for i := a; i <= 0; i++ {
+			fmt.Println(i)
+			sum += i
+		}
+		return sum, nil
+	}
+
+	for i := 0; i <= a; i++ {
+		fmt.Println(i)
+		sum += i
+	}
+	return sum, nil
+}
+
 func main() {
 	var numberString string
 	fmt.Print("Enter a number: ")
@@ -25,11 +47,10 @@ func main() {
 		return
 	}
 
-	sum := 0
-
-	for i := 1; i <= number; i++ {
-		fmt.Println(i)
-		sum += i
+	sum, calcErr := calcSum(number)
+	if calcErr != nil {
+		fmt.Println(calcErr)
+		return
 	}
 
 	fmt.Printf("The total sum is %d", sum)
